@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCAS 69 - ระบบรับสมัครมหาวิทยาลัย ปีการศึกษา 2569</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="theme-controls">
+        <button class="theme-btn light" onclick="setTheme('light')" title="โหมดสว่าง">☀️</button>
+        <button class="theme-btn dark" onclick="setTheme('dark')" title="โหมดมืด">🌙</button>
+        <button class="theme-btn blue" onclick="setTheme('blue')" title="ธีมน้ำเงิน">💙</button>
+        <button class="theme-btn sunset" onclick="setTheme('sunset')" title="ธีมพระอาทิตย์ตก">🌅</button>
+        <button class="theme-btn ocean" onclick="setTheme('ocean')" title="ธีมมหาสมุทร">🌊</button>
+    </div>
+
+    <div class="container">
+    <div class="header">
+        <div class="logo-section" style="text-align: center;">
+            <div class="main-logo" style="font-size: 48px;">🎓</div>
+            <h1 class="main-title" style="margin: 0; font-size: 36px;">TCAS 69</h1>
+        </div>
+
+        <p class="subtitle" style="text-align: center; font-size: 18px; margin-top: 10px;">
+            ระบบรับสมัครมหาวิทยาลัย ปีการศึกษา 2569
+        </p>
+
+        <p class="description" style="text-align: center; color: #555;">
+            Thai University Central Admission System
+        </p>
+
+        <p class="description-detail" style="text-align: center; color: #ff0202;">
+            ระบบการคัดเลือกบุคคลเข้าศึกษาในสถาบันอุดมศึกษาแบบกลาง 3 รอบ อ้างอิงจากรูปถ้าผิดขออภัยอย่างสูง<br>
+            เวลาคืออิงจาก <strong>ที่ 1 ของแต่ละเดือน</strong>
+        </p>
+
+        <div style="text-align: center; margin: 20px 0;">
+            <img src="tcas69.jpg" alt="แบนเนอร์ TCAS 69" style="max-width: 100%; width: 500px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+        </div>
+
+        <div class="current-time" id="currentTime" style="text-align: center; font-weight: bold; font-size: 18px;">
+            กำลังโหลดเวลา...
+        </div>
+    </div>
+</div>
+
+        <div class="tcas-info">
+            <div class="tcas-rounds">
+                <div class="round-card portfolio">
+                    <div class="round-icon">📂</div>
+                    <h3>รอบ 1 Portfolio</h3>
+                    <p>ประเมินผลงาน กิจกรรม ความสามารถพิเศษ</p>
+                    <div class="round-features">
+                        <span>• ผลงานพอร์ตโฟลิโอ</span>
+                        <span>• กิจกรรมเสริมหลักสูตร</span>
+                        <span>• ความสามารถพิเศษ</span>
+                    </div>
+                </div>
+                <div class="round-card quota">
+                    <div class="round-icon">🎯</div>
+                    <h3>รอบ 2 Quota</h3>
+                    <p>โควตาพิเศษ จังหวัด ภูมิภาค</p>
+                    <div class="round-features">
+                        <span>• โควตาพื้นที่</span>
+                        <span>• โควตานักกีฬา</span>
+                    </div>
+                </div>
+                <div class="round-card admission">
+                    <div class="round-icon">📝</div>
+                    <h3>รอบ 3 Admission</h3>
+                    <p>สอบกลาง GAT PAT O-NET</p>
+                    <div class="round-features">
+                        <span>• คะแนน GAT</span>
+                        <span>• คะแนน PAT</span>
+                        <span>• คะแนน A level</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-section">
+            <h2 class="section-title">📊 สถิติการสมัครเข้าศึกษา</h2>
+            <div class="stats-grid">
+                <div class="stat-card total">
+                    <div class="stat-icon">🏛️</div>
+                    <div class="stat-number" id="totalCount">25</div>
+                    <div class="stat-label">มหาวิทยาลัย</div>
+                </div>
+                <div class="stat-card upcoming">
+                    <div class="stat-icon">⏰</div>
+                    <div class="stat-number" id="upcomingCount">0</div>
+                    <div class="stat-label">ใกล้เปิดรับสมัคร</div>
+                </div>
+                <div class="stat-card urgent">
+                    <div class="stat-icon">🚨</div>
+                    <div class="stat-number" id="urgentCount">0</div>
+                    <div class="stat-label">เร่งด่วน (≤ 30 วัน)</div>
+                </div>
+                <div class="stat-card passed">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-number" id="passedCount">0</div>
+                    <div class="stat-label">หมดเขตแล้ว</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-section">
+            <h2 class="section-title">📅 ตารางวันที่รับสมัคร</h2>
+            <div class="table-container">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ลำดับ</th>
+                                <th>มหาวิทยาลัย</th>
+                                <th>🎨 รอบ 1 Portfolio</th>
+                                <th>🎯 รอบ 2 Quota</th>
+                                <th>📝 รอบ 3 Admission</th>
+                            </tr>
+                        </thead>
+                        <tbody id="universityTable">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-dot normal"></div>
+                <span>ปกติ (เหลือมากกว่า 30 วัน)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot urgent"></div>
+                <span>เร่งด่วน (เหลือ 30 วันหรือน้อยกว่า)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot passed"></div>
+                <span>หมดเขตการสมัครแล้ว</span>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>📚 ข้อมูลทั่วไป</h4>
+                    <p>ข้อมูลอัปเดตล่าสุด: <span id="lastUpdate"></span></p>
+                    <p>TCAS 69 คือระบบการคัดเลือกบุคคลเข้าศึกษาในสถาบันอุดมศึกษา</p>
+                </div>
+                <div class="footer-section">
+                    <h4>🎯 รอบการสมัคร</h4>
+                    <p>แบ่งเป็น 3 รอบหลัก: Portfolio, Quota, และ Admission</p>
+                    <p>ไม่มีรอบ Direct สำหรับ TCAS 69</p>
+                </div>
+                <div class="footer-section">
+                    <h4>⏰ การอัปเดต</h4>
+                    <p>เวลาจะอัปเดตอัตโนมัติทุกนาที</p>
+                    <p>ข้อมูลสำหรับปีการศึกษา 2569 (ค.ศ. 2025-2026)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+       const universities = [
+    { no: 1, name: "จุฬาลงกรณ์มหาวิทยาลัย", portfolio: "1/11/2025", quota: "1/2/2026", admission: "1/5/2026", logo: "logo/chula-thumb.png" },
+    { no: 2, name: "มหาวิทยาลัยเกษตรศาสตร์", portfolio: "1/10/2025", quota: "1/2/2026", admission: "1/5/2026", logo: "logo/OIP.jpg" },
+    { no: 3, name: "มหาวิทยาลัยขอนแก่น", portfolio: "1/10/2025", quota: "1/2/2026", admission: "1/5/2026", logo: "logo/khonkaen.jpg" },
+    { no: 4, name: "มหาวิทยาลัยเชียงใหม่", portfolio: "1/11/2025", quota: "1/2/2026", admission: "1/5/2026", logo: "logo/cmu_logo.png" },
+    { no: 5, name: "มจธ. / KMUTT", portfolio: "1/10/2025", quota: "1/2/2026", admission: "1/5/2026", logo: "logo/KMUTT_CI_Primary_Logo-Full-1200x1200.png" }, // แก้ไขโลโก้สำหรับ มจธ.
+    { no: 6, name: "มจพ. / KMUTNB", portfolio: "1/10/2025", quota: "1/12/2025", admission: "1/5/2026", logo: "logo/kmutnb_cover_image.jpg" }, // แก้ไขโลโก้สำหรับ มจพ.
+    { no: 7, name: "สจล. / KMITL", portfolio: "1/9/2025", quota: "1/2/2026", admission: "1/5/2026", logo: "logo/king-mongkut-s-institute-of-technology-ladkrabang-logo.png" },
+    { no: 8, name: "มหาวิทยาลัยธรรมศาสตร์", portfolio: "1/11/2025", quota: "1/3/2026", admission: "1/5/2026", logo: "logo/Thammasat-University-Seal-Logo-Vector.svg-.png" },
+    { no: 9, name: "มหาวิทยาลัยมหิดล", portfolio: "1/10/2025", quota: "1/3/2026", admission: "1/5/2026", logo: "logo/OIP (1).jpg" },
+    { no: 10, name: "มหาวิทยาลัยศรีนครินทรวิโรฒ", portfolio: "1/11/2025", quota: "1/2/2026", admission: "1/5/2026", logo: "logo/OIP (2).jpg" },
+    { no: 11, name: "มหาวิทยาลัยศิลปากร", portfolio: "1/10/2025", quota: "1/2/2026", admission: "1/5/2026", logo: "logo/OIP (3).jpg" },
+    { no: 12, name: "มหาวิทยาลัยบูรพา", portfolio: "1/10/2025", quota: "1/2/2026", admission: "1/5/2026", logo: "logo/OIP (4).jpg" },
+    { no: 13, name: "มหาวิทยาลัยสงขลานครินทร์", portfolio: "1/12/2025", quota: "1/3/2026", admission: "1/5/2026", logo: "logo/psu.jpg" },
+    { no: 14, name: "มหาวิทยาลัยทักษิณ", portfolio: "1/11/2025", quota: "1/2/2026", admission: "1/5/2026", logo: "logo/OIP (5).jpg" },
+    { no: 15, name: "มหาวิทยาลัยนเรศวร", portfolio: "1/11/2025", quota: "1/2/2026", admission: "1/5/2026", logo: "logo/naresuan-university.jpg" },
+    { no: 16, name: "มหาวิทยาลัยพะเยา", portfolio: "1/10/2025", quota: "1/2/2026", admission: "1/5/2026", logo: "logo/OIP (6).jpg" },
+    { no: 17, name: "มหาวิทยาลัยมหาสารคาม", portfolio: "1/8/2025", quota: "1/2/2026", admission: "1/5/2026", logo: "logo/OIP (7).jpg" },
+    { no: 18, name: "มหาวิทยาลัยแม่ฟ้าหลวง", portfolio: "1/9/2025", quota: "1/2/2026", admission: "1/5/2026", logo: "logo/opo.jpg" },
+    { no: 19, name: "มหาวิทยาลัยวลัยลักษณ์", portfolio: "1/9/2025", quota: "1/2/2026", admission: "1/5/2026", logo: "logo/LogoWalailakUniversityEng.png" },
+    { no: 20, name: "มหาวิทยาลัยเทคโนโลยีสุรนารี", portfolio: "1/9/2025", quota: "1/3/2026", admission: "1/5/2026", logo: "logo/logo_sut5.jpg" },
+    { no: 21, name: "มหาวิทยาลัยสวนดุสิต", portfolio: "1/8/2025", quota: "1/2/2026", admission: "1/5/2026", logo: "logo/OIP (8).jpg" },
+    { no: 22, name: "มหาวิทยาลัยแม่โจ้", portfolio: "1/11/2025", quota: "1/2/2026", admission: "1/5/2026", logo: "logo/mju_logo.jpg" },
+    { no: 23, name: "มหาวิทยาลัยอุบลราชธานี", portfolio: "1/9/2025", quota: "1/2/2026", admission: "1/5/2026", logo: "logo/" },
+    { no: 24, name: "มหาวิทยาลัยราชภัฏเชียงใหม่", portfolio: "1/10/2025", quota: "1/1/2026", admission: "1/5/2026", logo: "logo/b.png" }, // แก้ไขโลโก้สำหรับ มรภ. เชียงใหม่
+    { no: 25, name: "มหาวิทยาลัยเทคโนโลยีราชมงคล", portfolio: "1/10/2025", quota: "1/2/2026", admission: "1/5/2026", logo: "logo/อุบล-13.jpg" } // แก้ไขโลโก้สำหรับ มทร. (ใช้ธัญบุรีเป็นตัวอย่าง)
+];
+
+   function parseDate(dateStr) {
+    const [day, month, year] = dateStr.split('/');
+    let fullYear = parseInt(year);
+    // Adjust 2-digit Thai Buddhist year to full Common Era year
+    // Assuming 2-digit year 'YY' means 25YY (Thai Buddhist year)
+    // For example, '68' means 2568 (TB) which is 2025 (CE)
+    // Common Era year = Thai Buddhist year - 543
+    // So if input is 68, it's 2568 TB, which is 2025 CE.
+    // The parse will get 68. 68 < 100, so 68 + 2000 = 2068 CE.
+    // If your input is '68' and you mean 2068, then this is correct.
+    // If '68' means 2568 Buddhist Era (2025 Common Era), then it needs more adjustment:
+    // If you always input 2-digit year for 25XX, then fullYear += 2500;
+    // For now, assuming standard 2-digit year to 20XX conversion:
+    if (fullYear < 100) { 
+        fullYear += 2000;
+    }
+    // Date.UTC uses 0-indexed months (0 for Jan, 11 for Dec)
+    return new Date(Date.UTC(fullYear, parseInt(month) - 1, parseInt(day)));
+}
+
+function formatThaiDate(date) {
+    const formatter = new Intl.DateTimeFormat('th-TH', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric', // This will output 25XX for Thai year
+        timeZone: 'Asia/Bangkok'
+    });
+    return formatter.format(date);
+}
+
+function formatShortThaiDate(date) {
+    const formatter = new Intl.DateTimeFormat('th-TH', {
+        day: 'numeric',
+        month: 'short',
+        year: '2-digit', // This will output '68' for 2568
+        timeZone: 'Asia/Bangkok'
+    });
+    return formatter.format(date);
+}
+
+function calculateCountdown(targetDate) {
+    const nowLocal = new Date();
+    // Normalize dates to start of day (00:00:00) for consistent day calculation, ignoring time component.
+    // This makes sure that '1 day left' means the target date is tomorrow, regardless of the current hour.
+    const startOfDayNow = new Date(nowLocal.getFullYear(), nowLocal.getMonth(), nowLocal.getDate(), 0, 0, 0, 0);
+    const startOfDayTarget = new Date(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate(), 0, 0, 0, 0);
+
+    const diffTime = startOfDayTarget.getTime() - startOfDayNow.getTime();
+
+    if (diffTime < 0) {
+        return {
+            text: "หมดเขตแล้ว",
+            class: "countdown-passed",
+            status: "passed",
+            days: 0
+        };
+    }
+
+    // Calculate total days remaining, rounding up.
+    // This ensures even a fraction of a day remaining (e.g., target is tomorrow morning, it's tonight) 
+    // counts as 1 full day for countdown purposes.
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+
+    let displayText = "";
+
+    if (diffDays === 0) {
+        displayText = "วันนี้!";
+    } else if (diffDays === 1) {
+        displayText = "พรุ่งนี้!";
+    } else {
+        // --- Precise calculation of years, months, and days based on calendar ---
+        let years = 0;
+        let months = 0;
+        let days = 0;
+
+        // Create a temporary date object starting from now for iterative calculations
+        let tempDate = new Date(startOfDayNow.getFullYear(), startOfDayNow.getMonth(), startOfDayNow.getDate());
+
+        // Calculate full years
+        // Loop while tempDate plus one year is still before or on the target date
+        while (true) {
+            let nextYearDate = new Date(tempDate.getFullYear() + 1, tempDate.getMonth(), tempDate.getDate());
+            // Handle date rollover for months like Feb (e.g., Feb 29 to Mar 1 in non-leap year)
+            // If setting to next year causes date to shift (e.g., Feb 29 in leap year to Mar 1 in non-leap year),
+            // ensure tempDate goes to the correct last day of month if original date was e.g. 31st
+            if (nextYearDate.getDate() !== tempDate.getDate() && nextYearDate.getDate() < tempDate.getDate()) {
+                 nextYearDate = new Date(nextYearDate.getFullYear(), nextYearDate.getMonth() + 1, 0); // Last day of previous month after month increment
+            }
+
+            if (nextYearDate.getTime() <= startOfDayTarget.getTime()) {
+                years++;
+                tempDate = nextYearDate;
+            } else {
+                break; // Next year is past target, so stop counting full years
+            }
+        }
+        
+        // Calculate full months from the new tempDate (after counting years)
+        // Loop while tempDate plus one month is still before or on the target date
+        while (true) {
+            let nextMonthDate = new Date(tempDate.getFullYear(), tempDate.getMonth() + 1, tempDate.getDate());
+            // Adjust for month end rollovers (e.g., Jan 31 + 1 month = Mar 2 if Feb has 28 days)
+            // If the date rolls over due to month having fewer days, set it to the last day of that month
+            if (nextMonthDate.getDate() !== tempDate.getDate() && nextMonthDate.getDate() < tempDate.getDate()) {
+                 nextMonthDate = new Date(nextMonthDate.getFullYear(), nextMonthDate.getMonth(), 0); // Last day of previous month
+            }
+            
+            if (nextMonthDate.getTime() <= startOfDayTarget.getTime()) {
+                months++;
+                tempDate = nextMonthDate;
+            } else {
+                break; // Next month is past target, so stop counting full months
+            }
+        }
+
+        // Calculate remaining days from the new tempDate (after counting years and months)
+        const remainingTime = startOfDayTarget.getTime() - tempDate.getTime();
+        days = Math.ceil(remainingTime / (1000 * 60 * 60 * 24)); 
+
+        // Construct the display text
+        let parts = [];
+        if (years > 0) {
+            parts.push(`${years} ปี`);
+        }
+        if (months > 0) {
+            parts.push(`${months} เดือน`);
+        }
+        // Always display remaining days if there are any, or if it's the only unit left
+        if (days > 0) { 
+            parts.push(`${days} วัน`);
+        }
+        
+        // Fallback: If no years, months, or days are calculated (e.g., for very short durations 
+        // that are handled by diffDays === 0 or === 1), but diffDays is still > 0
+        if (parts.length === 0 && diffDays > 0) {
+            displayText = `${diffDays} วัน`; 
+        } else {
+            displayText = parts.join(' ');
+        }
+    }
+
+    // Urgency check remains based on total days (diffDays)
+    const isUrgent = diffDays <= 30; 
+    return {
+        text: `เหลือ ${displayText}`,
+        class: isUrgent ? "countdown-urgent" : "countdown-normal",
+        status: isUrgent ? "urgent" : "upcoming",
+        days: diffDays // Still returns total days for potential sorting or other logic
+    };
+}
+
+function createRoundCell(dateStr) {
+    if (!dateStr || dateStr === '-') {
+        return {
+            html: `
+                <div class="round-cell">
+                    <div class="round-date">-</div>
+                    <div class="countdown-badge countdown-passed">ไม่มี</div>
+                </div>
+            `,
+            status: "none",
+            days: 0
+        };
+    }
+
+    const targetDate = parseDate(dateStr);
+    const countdown = calculateCountdown(targetDate);
+    const formattedDate = formatShortThaiDate(targetDate);
+
+    return {
+        html: `
+            <div class="round-cell">
+                <div class="round-date">${formattedDate}</div>
+                <div class="countdown-badge ${countdown.class}">${countdown.text}</div>
+            </div>
+        `,
+        status: countdown.status,
+        days: countdown.days
+    };
+}
+
+function updateStats() {
+    let urgentCount = 0;
+    let upcomingCount = 0;
+    let passedCount = 0;
+
+    universities.forEach(uni => {
+        [uni.portfolio, uni.quota, uni.admission].forEach(round => {
+            if (round && round !== '-') {
+                const result = createRoundCell(round);
+                if (result.status === 'urgent') urgentCount++;
+                else if (result.status === 'upcoming') upcomingCount++;
+                else if (result.status === 'passed') passedCount++;
+            }
+        });
+    });
+
+    document.getElementById('urgentCount').textContent = urgentCount;
+    document.getElementById('upcomingCount').textContent = upcomingCount;
+    document.getElementById('passedCount').textContent = passedCount;
+}
+
+function renderTable() {
+    const tbody = document.getElementById('universityTable');
+    tbody.innerHTML = universities.map(uni => {
+        const portfolio = createRoundCell(uni.portfolio);
+        const quota = createRoundCell(uni.quota);
+        const admission = createRoundCell(uni.admission);
+
+        return `
+            <tr>
+                <td>${uni.no}</td>
+                <td>
+                    <div class="university-cell">
+                        <img src="${uni.logo}" alt="${uni.name}" class="university-logo" 
+                            onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2250%22 height=%2250%22 viewBox=%220 0 50 50%22><rect width=%2250%22 height=%2250%22 fill=%22%234f46e5%22 rx=%2225%22/><text x=%2225%22 y=%2232%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2224%22>🎓</text></svg>'">
+                        <div class="university-name">${uni.name}</div>
+                    </div>
+                </td>
+                <td>${portfolio.html}</td>
+                <td>${quota.html}</td>
+                <td>${admission.html}</td>
+            </tr>
+        `;
+    }).join('');
+    updateStats();
+}
+
+function updateCurrentTime() {
+    const now = new Date();
+
+    const formatterDate = new Intl.DateTimeFormat('th-TH', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        timeZone: 'Asia/Bangkok'
+    });
+
+    const formatterTime = new Intl.DateTimeFormat('th-TH', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+        timeZone: 'Asia/Bangkok'
+    });
+
+    const formattedDate = formatterDate.format(now);
+    const formattedTime = formatterTime.format(now);
+
+    document.getElementById('currentTime').textContent = `${formattedDate} เวลา ${formattedTime} น.`;
+    document.getElementById('lastUpdate').textContent = `${formattedDate} เวลา ${formattedTime} น.`;
+}
+
+function setTheme(theme) {
+    const body = document.body;
+    body.className = ''; // Clear existing themes
+    switch(theme) {
+        case 'dark':
+            body.classList.add('dark-mode');
+            break;
+        case 'blue':
+            body.classList.add('theme-blue');
+            break;
+        case 'sunset':
+            body.classList.add('theme-sunset');
+            break;
+        case 'ocean':
+            body.classList.add('theme-ocean');
+            break;
+        default: // 'light' or any other default
+            break;
+    }
+    // Store selected theme, maybe in localStorage if you want it to persist across sessions
+    // window.localStorage.setItem('selectedTheme', theme); 
+    window.selectedTheme = theme; // For current session
+}
+
+function loadSavedTheme() {
+    // const savedTheme = window.localStorage.getItem('selectedTheme') || 'light';
+    const savedTheme = window.selectedTheme || 'light'; // Using window.selectedTheme if set during development
+    setTheme(savedTheme);
+}
+
+function init() {
+    loadSavedTheme();
+    updateCurrentTime();
+    renderTable(); // Initial render
+
+    // Update current time every 10 seconds
+    setInterval(updateCurrentTime, 10000); 
+    
+    // Re-render table and update stats every 60 seconds (1 minute)
+    setInterval(renderTable, 60000); 
+}
+
+// Ensure the DOM is fully loaded before running init
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
